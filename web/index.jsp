@@ -1,3 +1,3 @@
 <%
-  response.sendRedirect(request.getContextPath()+"/userServlet?method=login");
+  response.sendRedirect(request.getContextPath()+"/shopServlet?method=shops");
 %>

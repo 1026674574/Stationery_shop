@@ -3,8 +3,8 @@ package com.wzl.model;
 public class Detail {
     private int de_id;
     private int de_number;
-    private Shop shop;
-    private Order order;
+    private int sh_id;
+    private int or_id;
 
     public int getDe_id() {
         return de_id;
@@ -22,19 +22,19 @@ public class Detail {
         this.de_number = de_number;
     }
 
-    public Shop getShop() {
-        return shop;
+    public int getSh_id() {
+        return sh_id;
     }
 
-    public void setShop(Shop shop) {
-        this.shop = shop;
+    public void setSh_id(int sh_id) {
+        this.sh_id = sh_id;
     }
 
-    public Order getOrder() {
-        return order;
+    public int getOr_id() {
+        return or_id;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOr_id(int or_id) {
+        this.or_id = or_id;
     }
 }

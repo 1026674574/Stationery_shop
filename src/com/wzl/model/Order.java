@@ -6,7 +6,7 @@ public class Order {
     private String or_date;
     private float or_price;
     private int or_state;
-    private User user;
+    private int us_id;
 
     public int getOr_id() {
         return or_id;
@@ -48,12 +48,12 @@ public class Order {
         this.or_state = or_state;
     }
 
-    public User getUser() {
-        return user;
+    public int getUs_id() {
+        return us_id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUs_id(int us_id) {
+        this.us_id = us_id;
     }
 }
 

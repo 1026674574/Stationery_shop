@@ -46,6 +46,6 @@ public class UserServlet extends HttpServlet {
             System.out.println(5555);
         }
         else
-            response.sendRedirect("/WEB-INF/pages/Shops.jsp");
+            request.getRequestDispatcher("/WEB-INF/pages/Shops.jsp").forward(request,response);
     }
 }

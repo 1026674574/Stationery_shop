@@ -6,7 +6,16 @@ public class Shop {
     private String sh_name;
     private  String sh_picpth;
     private  String sh_text;
-    private  Type type;
+    private  int ty_id;
+    private  int sh_number;
+
+    public int getSh_number() {
+        return sh_number;
+    }
+
+    public void setSh_number(int sh_number) {
+        this.sh_number = sh_number;
+    }
 
     public int getSh_id() {
         return sh_id;
@@ -48,11 +57,11 @@ public class Shop {
         this.sh_text = sh_text;
     }
 
-    public Type getType() {
-        return type;
+    public int getTy_id() {
+        return ty_id;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setTy_id(int ty_id) {
+        this.ty_id = ty_id;
     }
 }
