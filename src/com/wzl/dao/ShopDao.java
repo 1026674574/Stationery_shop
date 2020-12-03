@@ -20,8 +20,10 @@ public class ShopDao implements ShopDaoIml {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-            preparedStatement = connection.prepareStatement("select * from shop LIMIT ?,?");
+            System.out.println(page.getPageNo());
+            preparedStatement = connection.prepareStatement(" select * from shop LIMIT ?,? ");
             preparedStatement.setInt(1,(page.getPageNo()-1)*page.getPageSize());
+
             preparedStatement.setInt(2,page.getPageSize());
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next())
@@ -30,7 +32,7 @@ public class ShopDao implements ShopDaoIml {
                 shop.setSh_name(resultSet.getString("sh_name"));
                 shop.setSh_picpth(resultSet.getString("sh_picpth"));
                 shop.setSh_id(resultSet.getInt("sh_id"));
-                shop.setSh_price(resultSet.getFloat("sh_float"));
+                shop.setSh_price(resultSet.getFloat("sh_price"));
                 shop.setSh_text(resultSet.getString("sh_text"));
                 shop.setTy_id(resultSet.getInt("ty_id"));
                 shops.add(shop);
@@ -54,9 +56,10 @@ public class ShopDao implements ShopDaoIml {
 
 
 
-    public Page<Shop> getPage()
+    public Page<Shop> getPage(int pageNo)
     {
-        Page<Shop> page = new Page<>(0);
+        Page<Shop> page = new Page<>(pageNo);
+        page.setTotalItemNumber(getTotalComputerNumber());
         ArrayList<Shop> allShops = getAllShops(page);
         page.setList(allShops);
         return page;
@@ -72,7 +75,8 @@ public class ShopDao implements ShopDaoIml {
         try {
             preparedStatement = connection.prepareStatement("select count(sh_id) from shop ");
             resultSet = preparedStatement.executeQuery();
-            return resultSet.getInt("count(sh_id)");
+            if (resultSet.next())
+                return resultSet.getLong("count(sh_id)");
         } catch (SQLException e) {
             e.printStackTrace();
         }

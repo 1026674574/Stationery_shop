@@ -8,6 +8,6 @@ import java.util.ArrayList;
 public interface ShopDaoIml {
     //获取所有商品
     ArrayList<Shop> getAllShops(Page<Shop> page);
-    Page<Shop> getPage();
+    Page<Shop> getPage(int pageNo);
     long getTotalComputerNumber();
 }

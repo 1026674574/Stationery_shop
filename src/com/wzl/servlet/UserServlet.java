@@ -13,7 +13,6 @@ import java.lang.reflect.Method;
 
 @WebServlet(name = "UserServlet" ,urlPatterns = "/userServlet")
 public class UserServlet extends HttpServlet {
-
     UserService userService = new UserService ();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String methodName = request.getParameter("method");
@@ -23,7 +22,6 @@ public class UserServlet extends HttpServlet {
             // 执行相应的方法
             method.setAccessible(true);
             method.invoke(this, request,response);
-
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -46,6 +44,8 @@ public class UserServlet extends HttpServlet {
             System.out.println(5555);
         }
         else
-            request.getRequestDispatcher("/WEB-INF/pages/Shops.jsp").forward(request,response);
+            request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request,response);
+        request.getRequestDispatcher("/WEB-INF/pages/shops.jsp").forward(request,response);
     }
+
 }
