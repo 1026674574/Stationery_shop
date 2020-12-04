@@ -16,4 +16,8 @@ public class ShopService {
     {
         return shopDaoIml.getPage(pageNo);
     }
+
+    public Shop getShop(int id) {
+        return shopDaoIml.getShop(id);
+    }
 }

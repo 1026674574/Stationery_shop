@@ -83,4 +83,31 @@ public class ShopDao implements ShopDaoIml {
 
         return 0;
     }
+
+    @Override
+    public Shop getShop(int id) {
+        Connection connection = db.getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Shop shop = new Shop();
+        try {
+            preparedStatement=connection.prepareStatement("select * from shop where sh_id = ?");
+            preparedStatement.setInt(1,id);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                shop.setSh_name(resultSet.getString("sh_name"));
+                shop.setSh_picpth(resultSet.getString("sh_picpth"));
+                shop.setSh_id(resultSet.getInt("sh_id"));
+                shop.setSh_price(resultSet.getFloat("sh_price"));
+                shop.setSh_text(resultSet.getString("sh_text"));
+                shop.setTy_id(resultSet.getInt("ty_id"));
+                shop.setSh_number(resultSet.getInt("sh_number"));
+                return shop;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return shop;
+    }
 }

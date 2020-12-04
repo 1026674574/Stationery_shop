@@ -19,12 +19,12 @@
 <div class="content">
     <c:forEach items="${shoppage.list}" var="shop">
         <div class="col-sm-6 col-md-4">
-            <a href="computerServlet?method=getComputer&pageNo=${shoppage.pageNo }&id=${shop.sh_id}" >
+            <a href="shopServlet?method=getShop&pageNo=${shoppage.pageNo }&id=${shop.sh_id}" >
                 <div class="thumbnail">
                     <img src="${shop.sh_picpth}" alt="...">
                     <div class="caption">
-                        <h3 style="color:black;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">${shop.sh_id }&nbsp;${shop.sh_id}</h3>
-                        <p class="prcieNum">￥ ${shop.sh_id }</p>
+                        <h3 style="color:black;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">${shop.sh_name}</h3>
+                        <p class="prcieNum">￥ ${shop.sh_price }</p>
                         <p>
                             <a href="computerServlet?method=addToCart&pageNo=${computerpage.pageNo }&id=${computer.id}&model=${computer.model}&brand=${computer.brand}" class="btn btn-primary addToCart" role="button"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> 加入购物车</a>
                             <a href="#" class="btn btn-default" role="button"> <span class="glyphicon glyphicon-star" aria-hidden="true" style="color:#FF8F1C;"></span> 收藏</a>

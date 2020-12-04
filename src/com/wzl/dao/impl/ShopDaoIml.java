@@ -10,4 +10,5 @@ public interface ShopDaoIml {
     ArrayList<Shop> getAllShops(Page<Shop> page);
     Page<Shop> getPage(int pageNo);
     long getTotalComputerNumber();
+    Shop getShop(int id);
 }
