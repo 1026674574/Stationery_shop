@@ -44,7 +44,7 @@
             <li class="nav2">欢迎进入本网站</li>
             <li><a href="userServlet?method=login" class="nav3">请登录</a></li>
 <%--            <li><a href="#" class="nav4">个人中心</a></li>--%>
-            <li><a href="shopping_cart.html" class="nav5">购物车</a></li>
+            <li><a href="shopServlet?method=forwardPage&page=shopping_cart&pageNo=${shoppage.pageNo }"class="nav5">购物车</a></li>
             <li><a href="#" class="nav6">收藏夹</a>
                 <div class="dropdown_1column">
                     <div class="col_1">

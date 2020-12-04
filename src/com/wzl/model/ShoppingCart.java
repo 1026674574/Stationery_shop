@@ -93,10 +93,10 @@ public class ShoppingCart {
 	}		
 			
 	/**
-	 * 向购物车中添加一件商品		
+	 * 向购物车中添加一件商品
 	 * @param shop
 	 */
-	public void addComputer(Shop shop){
+	public void addShop(Shop shop){
 		//1. 检查购物车中有没有该商品, 若有, 则使其数量 +1, 若没有, 
 		//新创建其对应的 ShoppingCartItem, 并把其加入到 computers 中
 		ShoppingCartItem sci = shops.get(shop.getSh_id());

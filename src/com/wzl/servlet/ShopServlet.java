@@ -1,7 +1,9 @@
 package com.wzl.servlet;
 
 import com.wzl.model.Shop;
+import com.wzl.model.ShoppingCart;
 import com.wzl.service.ShopService;
+import com.wzl.web.EStoreWebUtils;
 import com.wzl.web.Page;
 
 import javax.servlet.ServletException;
@@ -32,6 +34,11 @@ public class ShopServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             doPost(request,response);
+    }
+    //跳转页面
+    protected void forwardPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String page = request.getParameter("page");
+        request.getRequestDispatcher("/WEB-INF/pages/" + page + ".jsp").forward(request, response);
     }
 
     protected void getPage(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
@@ -65,5 +72,59 @@ public class ShopServlet extends HttpServlet {
         }
         request.setAttribute("shop", shop);
         request.getRequestDispatcher("/WEB-INF/pages/particulars.jsp").forward(request, response);
+    }
+
+    //添加到购物车
+    protected void addToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //1. 获取商品的 id
+        String idStr = request.getParameter("id");
+        int id = -1;
+        boolean flag = false;
+
+        try {
+            id = Integer.parseInt(idStr);
+        } catch (Exception e) {}
+
+        if(id > 0){
+            //2. 获取购物车对象
+            ShoppingCart sc = EStoreWebUtils.getShoppingCart(request);
+
+            //3. 调用 ComputerService 的 addToCart() 方法把商品放到购物车中
+            flag = shopService.addToCart(id, sc);
+        }
+
+        if(flag){
+            //4. 直接调用 getComputers() 方法.
+            getShop(request, response);
+            return;
+        }
+
+        response.sendRedirect(request.getContextPath() + "/error-1.jsp");
+    }
+    //添加到购物车（商品详情页添加）
+    protected void addToCartInside(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //1. 获取商品的 id
+        String idStr = request.getParameter("id");
+        int id = -1;
+        boolean flag = false;
+
+        try {
+            id = Integer.parseInt(idStr);
+        } catch (Exception ignored) {}
+
+        if(id > 0){
+            //2. 获取购物车对象
+            ShoppingCart sc = EStoreWebUtils.getShoppingCart(request);
+
+            //3. 调用 ComputerService 的 addToCart() 方法把商品放到购物车中
+            flag = shopService.addToCart(id, sc);
+        }
+
+        if(flag){
+            //4. 直接调用 getComputer() 方法.
+            getShop(request, response);
+            return;
+        }
+        response.sendRedirect(request.getContextPath() + "/error-1.jsp");
     }
 }

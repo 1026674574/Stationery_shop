@@ -216,3 +216,13 @@ li.delete button{
 .floot2 ul li a img:hover{
 	filter:brightness(100%);
 }
+.table tbody tr td{
+	vertical-align: middle;
+}
+.cartItemNum {
+
+	text-align:center;
+}
+.totalMoney {
+	font-size:22px;
+}
