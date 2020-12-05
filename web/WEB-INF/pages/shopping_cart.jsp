@@ -41,13 +41,13 @@
     <div class="row">
         <div class="col-xs-6 col-md-8"></div>
         <div class="col-xs-12 col-md-4 text-right" style="padding-left:30px;">
-            <a href="shopServlet?method=getComputers&pageNo=${param.pageNo }" class="btn btn-default" role="button">继续购物</a>
+            <a href="shopServlet?method=getShop&pageNo=${param.pageNo }"class="btn btn-default" role="button">继续购物</a>
 
 
             <a href="shopServlet?method=clear" class="btn btn-danger" role="button">清空购物车</a>
 
 
-            <a href="shopServlet?method=forwardPage&page=cash" class="btn btn-primary" role="button">结账</a>
+            <a href="shopServlet?method=cash" class="btn btn-primary" role="button">结账</a>
         </div>
 
     </div>

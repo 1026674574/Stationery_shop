@@ -35,6 +35,8 @@ public class ShopServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             doPost(request,response);
     }
+
+
     //跳转页面
     protected void forwardPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = request.getParameter("page");
@@ -83,7 +85,7 @@ public class ShopServlet extends HttpServlet {
 
         try {
             id = Integer.parseInt(idStr);
-        } catch (Exception e) {}
+        } catch (Exception ignored) {}
 
         if(id > 0){
             //2. 获取购物车对象
@@ -126,5 +128,12 @@ public class ShopServlet extends HttpServlet {
             return;
         }
         response.sendRedirect(request.getContextPath() + "/error-1.jsp");
+    }
+
+    protected void cash(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+
+        shopService.cash(EStoreWebUtils.getShoppingCart(request),"王鑫");
+
     }
 }

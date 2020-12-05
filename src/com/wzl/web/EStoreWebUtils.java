@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 public class EStoreWebUtils {
 	/**
-	 * 获取购物车对象: 从 session 中获取, 若 session 中没有改对象.
+	 * 获取购物车对象: 从 session 中获取, 若 session 中没有该对象.
 	 * 则创建一个新的购物车对象, 放入到 session 中.
 	 * 若有, 则直接返回. 
 	 * @param request

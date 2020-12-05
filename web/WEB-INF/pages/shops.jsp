@@ -26,7 +26,7 @@
                         <h3 style="color:black;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">${shop.sh_name}</h3>
                         <p class="prcieNum">￥ ${shop.sh_price }</p>
                         <p>
-                            <a href="shopServlet?method=addToCart&pageNo=${shoppage.pageNo }&id=${shop.sh_id}&model=${shop.sh_name}&brand=${shop.sh_price}" class="btn btn-primary addToCart" role="button"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> 加入购物车</a>
+                            <a href="shopServlet?method=addToCart&pageNo=${shoppage.pageNo }&id=${shop.sh_id}" class="btn btn-primary addToCart" role="button"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> 加入购物车</a>
                             <a href="#" class="btn btn-default" role="button"> <span class="glyphicon glyphicon-star" aria-hidden="true" style="color:#FF8F1C;"></span> 收藏</a>
                         </p>
                     </div>
