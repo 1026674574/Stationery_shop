@@ -123,11 +123,11 @@ div.picture{
 	width: 40%;
 	/* height: 750px; */
 	text-align: center;
-	padding-top: 150px;
+	padding-top: 100px;
 	/* border: 1px solid red; */
 }
 div.picture img{
-	max-width: 60%;
+	width: 60%;
 }
 div.describe{
 	width: 60%;

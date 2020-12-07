@@ -61,7 +61,7 @@
 				return;
 			}
 			//2. 请求地址为: computerServlet
-			var url = "computerServlet";
+			var url = "shopServlet";
 			
 			//3. 请求参数为: method:updateItemQuantity, id:name属性值, quantity:val, time:new Date()
 			var idVal = $.trim(this.name);
@@ -72,11 +72,11 @@
 			
 			//6. 更新当前页面的 computerNumber 和 totalMoney
 			$.post(url, args, function(data){
-				var computerNumber = data.computerNumber;
+				var shopNumber = data.shopNumber;
 				var totalMoney = data.totalMoney;
 				
 				$("#totalMoney").text("总金额：￥   " + totalMoney);
-				$("#computerNumber").text("您的购物车中共有" + computerNumber + "件商品");
+				$("#computerNumber").text("您的购物车中共有" + shopNumber + "件商品");
 			},"JSON");
 			
 		});

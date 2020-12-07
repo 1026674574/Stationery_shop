@@ -17,7 +17,7 @@
                 <li class="collection">${shop.sh_number}</li>
                 <li class="button">
                     <a href="#" style="cursor:pointer"><button class="buy">立即购买</button></a>
-                    <a href="shopServlet?method=addToCartInside&pageNo=${shoppage.pageNo }" style="cursor: pointer"><button class="into">加入购物车</button>
+                    <a href="shopServlet?method=addToCartInside&pageNo=${shoppage.pageNo }&id=${shop.sh_name}&name=${shop.sh_name}" style="cursor: pointer"><button class="into">加入购物车</button>
                     </a>
                 </li>
             </ul>
@@ -26,21 +26,5 @@
 </div>
 <%@ include file="/commons/foot.jsp"%>
 </body>
-<script>var num_jia = document.getElementById("num-jia");
-var num_jian = document.getElementById("num-jian");
-var input_num = document.getElementById("input-num");
 
-num_jia.onclick = function() {
-input_num.value = parseInt(input_num.value)+1;
-}
-
-num_jian.onclick = function() {
-
-if(input_num.value <= 0) {
-input_num.value = 0;
-} else {
-input_num.value = parseInt(input_num.value)-1;
-}
-
-}</script>
 </html>

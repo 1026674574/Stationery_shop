@@ -129,7 +129,7 @@ div.title_nav ul li{
 }
 div.shopping{
 	display: flex;
-	white-space:90%;
+	/*white-space:90%;*/
 	flex-wrap: wrap;
 	border-bottom: 0.5px solid #D3D3D3;
 }
@@ -137,6 +137,12 @@ div.picture{
 	width: 12%;
 	height: 150px;
 	border: 1px solid #7FFFD4;
+}
+div.picture img{
+	width: 130px;
+	position: relative;
+	top: 5px;
+	left: 2px;
 }
 div.describe{
 	width: 85%;
@@ -153,8 +159,11 @@ div.describe ul li{
 	margin-top: 55px;
 	list-style: none;
 }
+li.name{
+	width: 20%;
+}
 li.number{
-	margin-left: -150px;
+	margin-left: -280px;
 }
 li.number input{
 	width: 15px;

@@ -127,8 +127,12 @@ div.nav li ul li:hover
 .logo{
 	border: 1px solid aquamarine;
 	margin: 15px 80px;
-	height: 100px;
-	width: 100px;
+	height: 120px;
+	width: 120px;
+}
+.logo img{
+    width:100px ;
+
 }
 .search{
 	line-height: 100px;
@@ -236,7 +240,9 @@ a:hover{
     border:#F22D00;
 }
 .thumbnail {
-
+    width: 280px;
+    height: 300px;
+    border: 1px solid #5bc0de;
 }
 .cartItem {
     height:200px;

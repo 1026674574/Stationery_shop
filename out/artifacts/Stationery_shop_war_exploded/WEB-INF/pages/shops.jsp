@@ -1,15 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
+<!DOCTYPE>
 <html>
 <head>
     <meta charset="utf-8" />
     <title>校园文具网</title>
-
     <link href="${pageContext.request.contextPath}/jsp/css/index.css" type="text/css" rel="stylesheet">
     <script type="text/javascript" src="${pageContext.request.contextPath}/jsp/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/jsp/js/bootstrap.min.js"></script>
-
     <script type="text/javascript">
 
         $(function(){
@@ -26,7 +24,7 @@
                 if(reg.test(val)){
                     //2. 校验 val 在一个合法的范围内： 1-totalPageNumber
                     pageNo = parseInt(val);
-                    if(pageNo >= 1 && pageNo <= parseInt("${computerpage.totalPageNumber }")){
+                    if(pageNo >= 1 && pageNo <= parseInt("${shoppage.totalPageNumber }")){
                         flag = true;
                     }
                 }
@@ -40,25 +38,35 @@
                 }
 
                 //3. 页面跳转
-                var href = "computerServlet?method=getComputers&pageNo=" + pageNo + "&" + $(":hidden").serialize();
+                var href = "shopServlet?method=getPage&pageNo=" + pageNo + "&" + $(":hidden").serialize();
                 window.location.href = href;
             });
         })
 
     </script>
     <script type="text/javascript">
-
         $(function(){
             $("#back-to-top").click(function() {
                 $("html,body").animate({scrollTop:0}, 500);
             });
         })
     </script>
+<%--    <%@ include file="/commons/queryCondition.jsp" %>--%>
 </head>
 <body>
 <%@ include file="/commons/top.jsp"%>
+<div class="container tips">
+    <c:if test="${param.sh_name != null}">
+        <div class="alert alert-success tip-success">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>成功！</strong>您已经将 <b>${param.sh_name} </b>加入到购物车中!
+            <b><a href="shopServlet?method=forwardPage&page=cart&pageNo=${shoppage.pageNo }">立即查看购物车</a></b>
+        </div>
+    </c:if>
+
+</div>
 <div class="above">
-    <div class="logo"></div>
+    <div class="logo"><img src="${pageContext.request.contextPath}/jsp/img/logo.png" alt="..."></div>
     <div class="search">
         <input type="text" size="70" name="search" class="search1">
         <input type="submit" name="submit" value="搜索" class="submit">
@@ -69,7 +77,7 @@
         <div class="col-sm-6 col-md-4">
             <a href="shopServlet?method=getShop&pageNo=${shoppage.pageNo }&id=${shop.sh_id}" >
                 <div class="thumbnail">
-                    <img src="${shop.sh_picpth}" alt="...">
+                    <div style="text-align: center;"><img src="${shop.sh_picpth}" alt="..."></div>
                     <div class="caption">
                         <h3 style="color:black;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">${shop.sh_name}</h3>
                         <p class="prcieNum">￥ ${shop.sh_price }</p>

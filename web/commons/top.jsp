@@ -12,7 +12,7 @@
     <style type="text/css">
         div.top
         {
-            height: 150px;
+            height: 50px;
             /*border: 1px solid red;*/
         }
         div.nav
@@ -40,7 +40,7 @@
 <div class="top">
     <div class="nav">
         <ul>
-            <li><a href=".." class="nav1">网站首页</a></li>
+            <li><a href="${pageContext.request.contextPath}/index.jsp" class="nav1">网站首页</a></li>
             <li class="nav2">欢迎进入本网站</li>
             <li><a href="userServlet?method=login" class="nav3">请登录</a></li>
 <%--            <li><a href="#" class="nav4">个人中心</a></li>--%>
@@ -50,7 +50,6 @@
                     <div class="col_1">
                         <ul class="simple">
                             <li><a href="#">收藏的宝贝</a></li>
-                            <li><a href="#">收藏的店铺</a></li>
                         </ul>
                     </div>
                 </div>

@@ -11,7 +11,7 @@ public class Page<T> {
 	private List<T> list;
 	
 	//每页显示多少条记录
-	private int pageSize = 6;
+	private int pageSize = 12;
 	
 	//共有多少条记录
 	private long totalItemNumber;

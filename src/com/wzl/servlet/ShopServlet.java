@@ -153,7 +153,7 @@ public class ShopServlet extends HttpServlet {
 
         if(flag){
             //4. 直接调用 getComputers() 方法.
-            getShop(request, response);
+            getPage(request, response);
             return;
         }
 
@@ -190,6 +190,7 @@ public class ShopServlet extends HttpServlet {
 
 
         shopService.cash(EStoreWebUtils.getShoppingCart(request),"王鑫");
+        response.sendRedirect(request.getContextPath() + "/success.jsp");
 
     }
 }
