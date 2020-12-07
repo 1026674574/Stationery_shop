@@ -5,17 +5,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>404错误</title>
-<link href="${pageContext.request.contextPath}/jsp/css/bootstrap.min.css" rel="stylesheet">
-
-<link href="${pageContext.request.contextPath}/jsp/css/index.css" rel="stylesheet">
-
-<script type="text/javascript" src="${pageContext.request.contextPath}/jsp/js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/jsp/js/bootstrap.min.js"></script>
+	<link href="${pageContext.request.contextPath}/jsp/css/bootstrap.min.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/jsp/css/index.css" rel="stylesheet">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/jsp/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/jsp/js/bootstrap.min.js"></script>
 <%--<%@ include file="/commons/queryCondition.jsp" %>--%>
 </head>
 <body>
-	
-	<%@ include file="/commons/top.jsp"%>
+
+<%@ include file="/commons/top.jsp"%>
 		
 	<div class="container">
 		<div class="jumbotron" style="margin-top:30px;">
@@ -23,11 +21,11 @@
   			<p>抱歉，页面好像去火星啦！</p>
   			<p><a class="btn btn-primary btn-lg" href="index.jsp" role="button">返回</a></p>
 		</div>
-	</div>		
-	
-			
-	
+	</div>
 
-	<%@ include file="/commons/foot.jsp"%>
+
+
+
+<%@ include file="/commons/foot.jsp"%>
 </body>
 </html>

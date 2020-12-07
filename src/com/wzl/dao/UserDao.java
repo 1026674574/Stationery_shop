@@ -25,7 +25,10 @@ public class UserDao implements UserDaoImpl {
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 user.setUs_id(resultSet.getInt(1));
-                user.setUs_truename(resultSet.getString(7));
+                user.setUs_password(resultSet.getString("us_phone"));
+                user.setUs_truename(resultSet.getString("us_truename"));
+                user.setUs_address(resultSet.getString("us_address"));
+                user.setUs_money(resultSet.getFloat("us_money"));
                 return user;
             }
         } catch (SQLException e) {

@@ -7,7 +7,6 @@
     <title>校园文具网</title>
 <%--    <link href="${pageContext.request.contextPath}/jsp/css/bootstrap.min.css" type="text/css" rel="stylesheet">--%>
     <link href="${pageContext.request.contextPath}/jsp/css/index.css" type="text/css" rel="stylesheet">
-
     <script type="text/javascript" src="${pageContext.request.contextPath}/jsp/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/jsp/js/bootstrap.min.js"></script>
     <script type="text/javascript">
@@ -49,9 +48,11 @@
             });
         })
     </script>
-<%--    <%@ include file="/commons/queryCondition.jsp" %>--%>
+
 </head>
 <body>
+
+
 <%@ include file="/commons/top.jsp"%>
 <div class="container tips">
     <c:if test="${param.id != null}">

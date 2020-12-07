@@ -2,6 +2,7 @@ package com.wzl.servlet;
 
 import com.wzl.model.Shop;
 import com.wzl.model.ShoppingCart;
+import com.wzl.model.User;
 import com.wzl.service.ShopService;
 import com.wzl.web.EStoreWebUtils;
 import com.wzl.web.Page;
@@ -187,10 +188,24 @@ public class ShopServlet extends HttpServlet {
     }
 
     protected void cash(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-
-
-        shopService.cash(EStoreWebUtils.getShoppingCart(request),"王鑫");
+        User user = getUser(request, response);
+        shopService.cash(EStoreWebUtils.getShoppingCart(request),user.getUs_truename());
         response.sendRedirect(request.getContextPath() + "/success.jsp");
 
+
+
     }
+    public User getUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        User user = EStoreWebUtils.getUser(request);
+        if (user==null)
+        {
+            request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request,response);
+            return null;
+        }
+        return user;
+
+    }
+
+
 }

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
@@ -39,13 +40,16 @@ public class UserServlet extends HttpServlet {
         user.setUs_name(name);
         user.setUs_password(password);
         user=userService.login(user);
-        if (user==null)
-        {
-            System.out.println(5555);
+        if(user == null){
+            response.sendRedirect("error-1.jsp");
+            return;
         }
-        else
-            request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request,response);
-        request.getRequestDispatcher("/WEB-INF/pages/shops.jsp").forward(request,response);
+        HttpSession session = request.getSession();
+        session.setAttribute("user",user);
+        response.sendRedirect("index.jsp");
+
+
+
     }
 
 }

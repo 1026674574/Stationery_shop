@@ -3,6 +3,7 @@ package com.wzl.web;
 
 
 import com.wzl.model.ShoppingCart;
+import com.wzl.model.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -25,5 +26,17 @@ public class EStoreWebUtils {
 		}
 		
 		return sc;
+	}
+
+	/**
+	 * 获取用户对象: 从 session 中获取, 若 session 中没有该对象.
+	 * 则无则返回空,
+	 * 若有, 则直接返回.
+	 * @param request
+	 * @return
+	 */
+	public static User getUser(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		return (User) session.getAttribute("user");
 	}
 }

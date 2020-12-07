@@ -8,7 +8,7 @@
 </head>
 <body>
 <%@ include file="/commons/top.jsp"%>
-<FORM action=${pageContext.request.contextPath}/userServlet?method=login method=post>
+<FORM action="${pageContext.request.contextPath}/userServlet?method=login" method=post>
 <div class="content">
     <div class="login">
         <ul>
@@ -17,12 +17,12 @@
         <ul>
             <li class="front">用户名</li>
             <li class="queen">
-                <input type="name" placeholder="输入用户名"></li>
+                <input type="name" placeholder="输入用户名" name="name"></li>
         </ul>
         <ul>
             <li class="front">密码</li>
             <li class="queen">
-                <input type="password" placeholder="输入用户密码"></li>
+                <input type="password" placeholder="输入用户密码" name="password"></li>
         </ul>
         <ul>
             <li class="registered"><a href="registered.html">注册</a></li>

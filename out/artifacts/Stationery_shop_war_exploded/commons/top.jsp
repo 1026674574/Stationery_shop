@@ -1,12 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: asus1
-  Date: 2020/11/29
-  Time: 19:58
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
     <title>Title</title>
     <style type="text/css">
@@ -42,18 +35,52 @@
         <ul>
             <li><a href="${pageContext.request.contextPath}/index.jsp" class="nav1">网站首页</a></li>
             <li class="nav2">欢迎进入本网站</li>
-            <li><a href="userServlet?method=login" class="nav3">请登录</a></li>
-<%--            <li><a href="#" class="nav4">个人中心</a></li>--%>
             <li><a href="shopServlet?method=forwardPage&page=shopping_cart&pageNo=${shoppage.pageNo }"class="nav5">购物车</a></li>
-            <li><a href="#" class="nav6">收藏夹</a>
-                <div class="dropdown_1column">
-                    <div class="col_1">
-                        <ul class="simple">
-                            <li><a href="#">收藏的宝贝</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
+
+
+            <c:if test="${sessionScope.user != null}" >
+
+            <li><a href="shopServlet?method=getPage&pageNo=${shoppage.pageNo }" class="nav1">
+                    ${sessionScope.user.us_truename}
+            </a></li>
+            </c:if>
+
+            <c:if test="${sessionScope.user == null}">
+               <li><a href="shopServlet?method=forwardPage&page=login&pageNo=${shoppage.pageNo }" class="nav1">
+                   未登录
+               </a>
+               </li>
+
+
+
+
+            </c:if>
+<%--            <li><a href="#" class="nav6">收藏夹</a>--%>
+<%--                <div class="dropdown_1column">--%>
+<%--                    <div class="col_1">--%>
+<%--                        <ul class="simple">--%>
+<%--                            <li>--%>
+<%--                                <a href="#">收藏的宝贝</a>--%>
+<%--                            </li>--%>
+<%--                        </ul>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </li>--%>
+<%--            <li class="dropdown">--%>
+<%--                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">--%>
+<%--                    <span class="glyphicon glyphicon-user" aria-hidden="true">--%>
+<%--                    </span>&nbsp;${requestScope.user}--%>
+<%--                    <span class="caret">--%>
+<%--                </span>--%>
+<%--                </a>--%>
+<%--                <ul class="dropdown-menu">--%>
+<%--                    <li><a href="#">我的账号</a></li>--%>
+<%--                    <li><a href="#">我的订单</a></li>--%>
+<%--                    <li><a href="#">账号余额</a></li>--%>
+<%--                    <li role="separator" class="divider"></li>--%>
+<%--                    <li><a href="#">退出</a></li>--%>
+<%--                </ul>--%>
+<%--            </li>--%>
         </ul>
     </div>
 </div>

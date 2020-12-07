@@ -7,7 +7,6 @@
     <title>校园文具网</title>
 <%--    <link href="${pageContext.request.contextPath}/jsp/css/bootstrap.min.css" type="text/css" rel="stylesheet">--%>
     <link href="${pageContext.request.contextPath}/jsp/css/index.css" type="text/css" rel="stylesheet">
-
     <script type="text/javascript" src="${pageContext.request.contextPath}/jsp/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/jsp/js/bootstrap.min.js"></script>
     <script type="text/javascript">
@@ -49,16 +48,18 @@
             });
         })
     </script>
-<%--    <%@ include file="/commons/queryCondition.jsp" %>--%>
+
 </head>
 <body>
+
+
 <%@ include file="/commons/top.jsp"%>
 <div class="container tips">
     <c:if test="${param.id != null}">
         <div class="alert alert-success tip-success">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <strong>成功！</strong>您已经将 <b>${param.name} </b>加入到购物车中!
-            <b><a href="shopServlet?method=forwardPage&page=cart&pageNo=${shoppage.pageNo }">立即查看购物车</a></b>
+            <b><a href="shopServlet?method=forwardPage&page=shopping_cart&pageNo=${shoppage.pageNo }">立即查看购物车</a></b>
         </div>
     </c:if>
 
