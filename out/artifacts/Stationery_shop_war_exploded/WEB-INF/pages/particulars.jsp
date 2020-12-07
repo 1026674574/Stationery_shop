@@ -15,8 +15,11 @@
                 <li class="text">${shop.sh_text} </li>
                 <li class="price">${shop.sh_price}</li>
                 <li class="collection">${shop.sh_number}</li>
-                <li class="button"><a href="#" style="cursor:pointer"><button class="buy">立即购买</button></a>
-                    <a href="#" style="cursor: pointer"><button class="into">加入购物车</button></a></li>
+                <li class="button">
+                    <a href="#" style="cursor:pointer"><button class="buy">立即购买</button></a>
+                    <a href="shopServlet?method=addToCartInside&pageNo=${shoppage.pageNo }" style="cursor: pointer"><button class="into">加入购物车</button>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

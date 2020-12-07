@@ -8,7 +8,6 @@
           <element id="module-output" name="Stationery_shop" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="jar" />
           <element id="library" level="project" name="taglibs-standard-spec-1.2.5" />
         </element>
       </element>

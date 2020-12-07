@@ -4,10 +4,7 @@ import com.wzl.dao.impl.OrderDaoImpl;
 import com.wzl.db.DBConnection;
 import com.wzl.model.Order;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class OrderDao implements OrderDaoImpl {
     DBConnection db = new DBConnection();
@@ -17,7 +14,7 @@ public class OrderDao implements OrderDaoImpl {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-            preparedStatement = connection.prepareStatement(" insert into `文具店`.`order` (or_time, or_date,us_id, or_state) values (?, ?,?, 0 )");
+            preparedStatement = connection.prepareStatement(" insert into `文具店`.`order` (or_time, or_date,us_id, or_state) values (?, ?,?, 0 )", Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1,order.getOr_time());
             preparedStatement.setString(2,order.getOr_date());
             preparedStatement.setInt(3,order.getUs_id());

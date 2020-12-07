@@ -5,7 +5,7 @@ import com.wzl.model.ShoppingCart;
 import com.wzl.service.ShopService;
 import com.wzl.web.EStoreWebUtils;
 import com.wzl.web.Page;
-
+import com.google.gson.Gson;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+
 @WebServlet(name = "ShopServlet" ,urlPatterns = "/shopServlet")
 public class ShopServlet extends HttpServlet {
     ShopService shopService = new ShopService();
@@ -31,7 +34,60 @@ public class ShopServlet extends HttpServlet {
             System.out.println(e.toString());
         }
     }
+    protected void remove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String idStr = request.getParameter("id");
 
+        int id = -1;
+        boolean flag = false;
+        try {
+            id = Integer.parseInt(idStr);
+        } catch (Exception ignored) {}
+
+        ShoppingCart sc = EStoreWebUtils.getShoppingCart(request);
+        shopService.removeItemFromShoppingCart(sc, id);
+
+        if(sc.isEmpty()){
+            request.getRequestDispatcher("/WEB-INF/pages/emptycart.jsp").forward(request, response);
+            return;
+        }
+
+        request.getRequestDispatcher("/WEB-INF/pages/cart.jsp").forward(request, response);
+
+    }
+    protected void updateItemQuantity(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //4. 在 updateItemQuantity 方法中, 获取 quanity, id, 再获取购物车对象, 调用 service 的方法做修改
+        String idStr = request.getParameter("id");
+        String quantityStr = request.getParameter("quantity");
+
+        ShoppingCart sc = EStoreWebUtils.getShoppingCart(request);
+
+        int id = -1;
+        int quantity = -1;
+
+        try {
+            id = Integer.parseInt(idStr);
+            quantity = Integer.parseInt(quantityStr);
+        } catch (Exception ignored) {}
+
+        if(id > 0 && quantity > 0)
+            shopService.updateItemQuantity(sc, id, quantity);
+
+        //5. 传回 JSON 数据: computerNumber:xx, totalMoney
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("shopNumber", sc.getComputerNumber());
+        result.put("totalMoney", sc.getTotalMoney());
+
+        Gson gson = new Gson();
+        String jsonStr = gson.toJson(result);
+        response.setContentType("text/javascript");
+        response.getWriter().print(jsonStr);
+    }
+    protected void clear(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        ShoppingCart sCart = EStoreWebUtils.getShoppingCart(request);
+        shopService.clearShoppingCart(sCart);
+        request.getRequestDispatcher("/WEB-INF/pages/emptycart.jsp").forward(request, response);
+    }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             doPost(request,response);
     }

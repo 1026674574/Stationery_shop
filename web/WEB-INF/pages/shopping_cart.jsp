@@ -5,6 +5,9 @@
     <title>购物车</title>
     <link href="${pageContext.request.contextPath}/jsp/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/jsp/css/shopping_cart.css" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/jsp/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/jsp/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/jsp/js/cartValidate.js"></script>
 </head>
 <body>
 <%@ include file="/commons/top.jsp"%>
@@ -24,7 +27,7 @@
             <ul>
                 <li class="name">${item.shop.sh_name}</li>
                 <li class="number">
-                    <input type="text" size="2" value="1">${item.shop.sh_number}
+                    <input  step="${item.quantity }" type="text" size="1" name="${item.shop.sh_id }" value="${item.quantity }" style="width:50px;height:30px;">
                 </li>
                 <li class="price">${item.shop.sh_price}</li>
                 <li class="delete">
@@ -41,7 +44,7 @@
     <div class="row">
         <div class="col-xs-6 col-md-8"></div>
         <div class="col-xs-12 col-md-4 text-right" style="padding-left:30px;">
-            <a href="shopServlet?method=getShop&pageNo=${param.pageNo }"class="btn btn-default" role="button">继续购物</a>
+            <a href="shopServlet?method=getPage&pageNo=${param.pageNo }"class="btn btn-default" role="button">继续购物</a>
 
 
             <a href="shopServlet?method=clear" class="btn btn-danger" role="button">清空购物车</a>

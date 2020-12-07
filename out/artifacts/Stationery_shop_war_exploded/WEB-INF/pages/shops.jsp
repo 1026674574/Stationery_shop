@@ -5,7 +5,55 @@
 <head>
     <meta charset="utf-8" />
     <title>校园文具网</title>
+
     <link href="${pageContext.request.contextPath}/jsp/css/index.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/jsp/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/jsp/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(function(){
+
+            $("#pageNo").change(function(){
+                var val = $(this).val();
+                val = $.trim(val);
+
+                //1. 校验 val 是否为数字 1, 2, 而不是 a12, b
+                var flag = false;
+                var reg = /^\d+$/g;
+                var pageNo = 0;
+
+                if(reg.test(val)){
+                    //2. 校验 val 在一个合法的范围内： 1-totalPageNumber
+                    pageNo = parseInt(val);
+                    if(pageNo >= 1 && pageNo <= parseInt("${computerpage.totalPageNumber }")){
+                        flag = true;
+                    }
+                }
+
+
+                if(!flag){
+
+                    $(".alert").alert();
+                    $(this).val("");
+                    return;
+                }
+
+                //3. 页面跳转
+                var href = "computerServlet?method=getComputers&pageNo=" + pageNo + "&" + $(":hidden").serialize();
+                window.location.href = href;
+            });
+        })
+
+    </script>
+    <script type="text/javascript">
+
+        $(function(){
+            $("#back-to-top").click(function() {
+                $("html,body").animate({scrollTop:0}, 500);
+            });
+        })
+    </script>
 </head>
 <body>
 <%@ include file="/commons/top.jsp"%>
