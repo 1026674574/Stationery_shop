@@ -5,7 +5,9 @@
 <head>
     <meta charset="utf-8" />
     <title>校园文具网</title>
+<%--    <link href="${pageContext.request.contextPath}/jsp/css/bootstrap.min.css" type="text/css" rel="stylesheet">--%>
     <link href="${pageContext.request.contextPath}/jsp/css/index.css" type="text/css" rel="stylesheet">
+
     <script type="text/javascript" src="${pageContext.request.contextPath}/jsp/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/jsp/js/bootstrap.min.js"></script>
     <script type="text/javascript">
@@ -15,12 +17,10 @@
             $("#pageNo").change(function(){
                 var val = $(this).val();
                 val = $.trim(val);
-
                 //1. 校验 val 是否为数字 1, 2, 而不是 a12, b
                 var flag = false;
                 var reg = /^\d+$/g;
                 var pageNo = 0;
-
                 if(reg.test(val)){
                     //2. 校验 val 在一个合法的范围内： 1-totalPageNumber
                     pageNo = parseInt(val);
@@ -28,8 +28,6 @@
                         flag = true;
                     }
                 }
-
-
                 if(!flag){
 
                     $(".alert").alert();
@@ -56,10 +54,10 @@
 <body>
 <%@ include file="/commons/top.jsp"%>
 <div class="container tips">
-    <c:if test="${param.sh_name != null}">
+    <c:if test="${param.id != null}">
         <div class="alert alert-success tip-success">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <strong>成功！</strong>您已经将 <b>${param.sh_name} </b>加入到购物车中!
+            <strong>成功！</strong>您已经将 <b>${param.name} </b>加入到购物车中!
             <b><a href="shopServlet?method=forwardPage&page=cart&pageNo=${shoppage.pageNo }">立即查看购物车</a></b>
         </div>
     </c:if>
@@ -82,7 +80,7 @@
                         <h3 style="color:black;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">${shop.sh_name}</h3>
                         <p class="prcieNum">￥ ${shop.sh_price }</p>
                         <p>
-                            <a href="shopServlet?method=addToCart&pageNo=${shoppage.pageNo }&id=${shop.sh_id}" class="btn btn-primary addToCart" role="button"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> 加入购物车</a>
+                            <a href="shopServlet?method=addToCart&pageNo=${shoppage.pageNo }&id=${shop.sh_id}&name=${shop.sh_name}" class="btn btn-primary addToCart" role="button"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> 加入购物车</a>
                             <a href="#" class="btn btn-default" role="button"> <span class="glyphicon glyphicon-star" aria-hidden="true" style="color:#FF8F1C;"></span> 收藏</a>
                         </p>
                     </div>
