@@ -25,7 +25,7 @@
                 <input type="password" placeholder="输入用户密码" name="password"></li>
         </ul>
         <ul>
-            <li class="registered"><a href="registered.html">注册</a></li>
+            <li class="registered"><a href="userServlet?method=forwardPage&page=registered">注册</a></li>
             <li class="forget"><a href="#">忘记密码</a></li>
         </ul>
         <ul>

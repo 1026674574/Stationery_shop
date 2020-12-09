@@ -10,4 +10,5 @@ User login(User user);
 
     void updateMoney(int us_id, float totalMoney);
 
+    void registered(User user);
 }

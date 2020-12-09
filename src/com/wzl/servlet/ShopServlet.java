@@ -187,6 +187,7 @@ public class ShopServlet extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/error-1.jsp");
     }
 
+    //结账功能
     protected void cash(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         User user = getUser(request, response);
         shopService.cash(EStoreWebUtils.getShoppingCart(request),user.getUs_truename());

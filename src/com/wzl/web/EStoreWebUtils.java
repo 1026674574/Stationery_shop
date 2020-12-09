@@ -39,4 +39,14 @@ public class EStoreWebUtils {
 		HttpSession session = request.getSession();
 		return (User) session.getAttribute("user");
 	}
+	/**
+	 * session中清除user对象
+	 * @param request
+	 * @return
+	 */
+	public static void Exit(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		//销毁session对象
+		session.invalidate();
+	}
 }

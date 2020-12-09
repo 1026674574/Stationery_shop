@@ -12,4 +12,8 @@ public class UserService {
    public User login(User user){
        return userDao.login(user);
    }
+
+   public void registered(User user){
+       userDao.registered(user);
+   }
 }
