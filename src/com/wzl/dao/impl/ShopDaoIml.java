@@ -9,14 +9,16 @@ import java.util.Collection;
 
 public interface ShopDaoIml {
     /**获取所有商品**/
-    ArrayList<Shop> getAllShops(Page<Shop> page);
+    ArrayList<Shop> getAllShops(Page<Shop> page,String text,int type);
 
     /**获得页面所需要的参数**/
-    Page<Shop> getPage(int pageNo);
+    Page<Shop> getPage(int pageNo,String text,int type);
     /**获得总的商品数量**/
-    long getTotalComputerNumber();
+    long getTotalComputerNumber(String text,int type);
     /**获得单个商品**/
     Shop getShop(int id);
     /**修改商品数量**/
     void UpdateNumber(ShoppingCartItem shoppingCartItem);
+
+
 }

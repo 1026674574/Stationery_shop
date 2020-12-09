@@ -1,13 +1,7 @@
 package com.wzl.service;
 
-import com.wzl.dao.DetailDao;
-import com.wzl.dao.OrderDao;
-import com.wzl.dao.ShopDao;
-import com.wzl.dao.UserDao;
-import com.wzl.dao.impl.DetailDaoImpl;
-import com.wzl.dao.impl.OrderDaoImpl;
-import com.wzl.dao.impl.ShopDaoIml;
-import com.wzl.dao.impl.UserDaoImpl;
+import com.wzl.dao.*;
+import com.wzl.dao.impl.*;
 import com.wzl.model.*;
 import com.wzl.web.Page;
 
@@ -19,13 +13,14 @@ import java.util.Date;
 
 public class ShopService {
 
-    ShopDaoIml shopDaoIml = new ShopDao() ;
+    ShopDaoIml shopDaoIml = new ShopDao();
     UserDaoImpl userDao = new UserDao();
     OrderDaoImpl orderDao = new OrderDao();
     DetailDaoImpl detailDao = new DetailDao();
-    public Page<Shop> getPage(int pageNo)
+
+    public Page<Shop> getPage(int pageNo,String text,int type)
     {
-        return shopDaoIml.getPage(pageNo);
+        return shopDaoIml.getPage(pageNo,text,type);
     }
 
     public Shop getShop(int id) {

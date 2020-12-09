@@ -17,7 +17,7 @@
 <div class="content">
     <div class="login">
         <ul>
-            <li class="title">登陆</li>
+            <li class="title">注册</li>
         </ul>
         <ul>
             <li class="front">用户名</li>
@@ -44,7 +44,6 @@
             <button type="reset" class="reset">重置</button>
         </ul>
     </div>
-
 </div>
 </FORM>
 <%@ include file="/commons/foot.jsp"%>

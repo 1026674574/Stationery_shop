@@ -5,14 +5,11 @@
 <head>
     <meta charset="utf-8" />
     <title>校园文具网</title>
-<%--    <link href="${pageContext.request.contextPath}/jsp/css/bootstrap.min.css" type="text/css" rel="stylesheet">--%>
     <link href="${pageContext.request.contextPath}/jsp/css/index.css" type="text/css" rel="stylesheet">
     <script type="text/javascript" src="${pageContext.request.contextPath}/jsp/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/jsp/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-
         $(function(){
-
             $("#pageNo").change(function(){
                 var val = $(this).val();
                 val = $.trim(val);
@@ -64,13 +61,29 @@
     </c:if>
 
 </div>
+
+<FORM action="${pageContext.request.contextPath}/shopServlet?method=getPage" method=post>
 <div class="above">
     <div class="logo"><img src="${pageContext.request.contextPath}/jsp/img/logo.png" alt="..."></div>
     <div class="search">
-        <input type="text" size="70" name="search" class="search1">
-        <input type="submit" name="submit" value="搜索" class="submit">
+        <select name="type" style="border: black 1px solid">
+    <c:forEach items="${types}" var="types">
+        <c:choose>
+            <c:when test="${types.ty_id == requestScope.type}">
+                <option value="${types.ty_id}" selected>${types.ty_name}</option>
+            </c:when>
+            <c:when test="${types.ty_id != requestScope.type}">
+                <option value="${types.ty_id}">${types.ty_name}</option>
+            </c:when>
+        </c:choose>
+    </c:forEach>
+            <option value="0" selected>所有</option>
+        </select>
+        <input type="text" class="search1" size="70" name="text" value=${requestScope.text}>
+        <input type="submit"  class="submit" value="查询">
     </div>
 </div>
+</FORM>
 <div class="content">
     <c:forEach items="${shoppage.list}" var="shop">
         <div class="col-sm-6 col-md-4">

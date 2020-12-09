@@ -16,17 +16,23 @@ import java.util.Collection;
 public class ShopDao implements ShopDaoIml {
     DBConnection db = new DBConnection();
     @Override
-    public ArrayList<Shop> getAllShops(Page<Shop> page) {
+    public ArrayList<Shop> getAllShops(Page<Shop> page,String text,int type) {
         ArrayList<Shop> shops = new ArrayList<>();
         Connection connection = db.getConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-
-            preparedStatement = connection.prepareStatement(" select * from shop LIMIT ?,? ");
-            preparedStatement.setInt(1,(page.getPageNo()-1)*page.getPageSize());
-
-            preparedStatement.setInt(2,page.getPageSize());
+            String sql = " select * from shop where  sh_name like ? ";
+            if (type>0)
+            {
+                sql+=" and ty_id = "+type;
+            }
+            sql+=" limit ?,?";
+            preparedStatement = connection.prepareStatement(sql);
+            String filterStr = "%" + text + "%";
+            preparedStatement.setString(1,filterStr);
+            preparedStatement.setInt(2,(page.getPageNo()-1)*page.getPageSize());
+            preparedStatement.setInt(3,page.getPageSize());
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next())
             {
@@ -44,8 +50,7 @@ public class ShopDao implements ShopDaoIml {
             e.printStackTrace();
         }finally {
             try {
-                assert resultSet != null;
-                resultSet.close();
+
                 preparedStatement.close();
                 connection.close();
             } catch (SQLException e) {
@@ -58,11 +63,11 @@ public class ShopDao implements ShopDaoIml {
 
 
 
-    public Page<Shop> getPage(int pageNo)
+    public Page<Shop> getPage(int pageNo,String text,int type)
     {
         Page<Shop> page = new Page<>(pageNo);
-        page.setTotalItemNumber(getTotalComputerNumber());
-        ArrayList<Shop> allShops = getAllShops(page);
+        page.setTotalItemNumber(getTotalComputerNumber(text,type));
+        ArrayList<Shop> allShops = getAllShops(page,text,type);
         page.setList(allShops);
         return page;
     }
@@ -70,12 +75,19 @@ public class ShopDao implements ShopDaoIml {
 
 
     @Override
-    public long getTotalComputerNumber() {
+    public long getTotalComputerNumber(String text,int type) {
         Connection connection = db.getConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-            preparedStatement = connection.prepareStatement("select count(sh_id) from shop ");
+            String sql = "select count(sh_id) from shop where sh_name like ? ";
+            if (type>0)
+            {
+                sql+=" and ty_id = "+type;
+            }
+            preparedStatement = connection.prepareStatement(sql);
+            String filterStr = "%" + text + "%";
+            preparedStatement.setString(1,filterStr);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next())
                 return resultSet.getLong("count(sh_id)");
@@ -83,8 +95,7 @@ public class ShopDao implements ShopDaoIml {
             e.printStackTrace();
         }finally {
             try {
-                assert resultSet != null;
-                resultSet.close();
+
                 preparedStatement.close();
                 connection.close();
             } catch (SQLException e) {

@@ -2,6 +2,7 @@ package com.wzl.servlet;
 
 import com.wzl.model.User;
 import com.wzl.service.UserService;
+import com.wzl.web.EStoreWebUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -51,8 +52,8 @@ public class UserServlet extends HttpServlet {
     protected void registered(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException{
         String name = request.getParameter("name");
         String password = request.getParameter("password");
-        String truename = request.getParameter("truename");
-        String address = request.getParameter("address");
+        String truename= new String(request.getParameter("truename").getBytes("ISO-8859-1"),"UTF-8");
+        String address = new String(request.getParameter("address").getBytes("ISO-8859-1"),"UTF-8");
         String phone = request.getParameter("phone");
         User user = new User();
         user.setUs_name(name);
@@ -68,5 +69,9 @@ public class UserServlet extends HttpServlet {
     protected void forwardPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = request.getParameter("page");
         request.getRequestDispatcher("/WEB-INF/pages/" + page + ".jsp").forward(request, response);
+    }
+    protected void Exit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        EStoreWebUtils.Exit(request);
+        response.sendRedirect("success.jsp");
     }
 }

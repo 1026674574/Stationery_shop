@@ -6,19 +6,15 @@
         div.top
         {
             height: 50px;
-            /*border: 1px solid red;*/
         }
         div.nav
         {
             height: 20px;
             background: gainsboro;
         }
-        /*div.nav ul li*/
-        /*{*/
-        /*    float: left;*/
-        /*    list-style: none;*/
-        /*}*/
+
         ul.nav_ul{
+            list-style: none;
             display: flex;
             flex-direction: row;
             justify-content: space-around;
@@ -101,7 +97,7 @@
             <li><a href="shopServlet?method=forwardPage&page=shopping_cart&pageNo=${shoppage.pageNo }">购物车</a></li>
             <c:if test="${sessionScope.user!= null}" >
             <li><a href="shopServlet?method=getPage&pageNo=${shoppage.pageNo }">
-                    ${sessionScope.user.us_truename}
+                    ${sessionScope.user.us_name}
             </a>
                 <div class="dropdown_1column">
                     <div class="col_1">
@@ -109,7 +105,7 @@
                             <li><a href="#">我的订单</a></li>
                             <li><a href="#">账号余额</a></li>
                             <li><a href="#">我的收藏</a></li>
-                            <li><a href="#">退出</a></li>
+                            <li><a href="userServlet?method=Exit&pageNo=${shoppage.pageNo }">退出</a></li>
                         </ul>
                     </div>
                 </div>

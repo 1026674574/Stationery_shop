@@ -1,7 +1,9 @@
 package com.wzl.servlet;
-
+import com.wzl.dao.TypeDao;
+import com.wzl.dao.impl.TypeDaoIml;
 import com.wzl.model.Shop;
 import com.wzl.model.ShoppingCart;
+import com.wzl.model.Type;
 import com.wzl.model.User;
 import com.wzl.service.ShopService;
 import com.wzl.web.EStoreWebUtils;
@@ -14,12 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 @WebServlet(name = "ShopServlet" ,urlPatterns = "/shopServlet")
 public class ShopServlet extends HttpServlet {
     ShopService shopService = new ShopService();
+    TypeDaoIml typeDaoIml = new TypeDao();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String methodName = request.getParameter("method");
         try {
@@ -102,13 +106,29 @@ public class ShopServlet extends HttpServlet {
 
     protected void getPage(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         String pageNoStr = request.getParameter("pageNo");
+        String typestr = request.getParameter("type");
+        String text="";
+        if (request.getParameter("text" )!= null)
+        {
+           text= new String(request.getParameter("text").getBytes("ISO-8859-1"),"UTF-8");
+        }
+
+        System.out.println("text:"+text);
         int pageNo = 1;
         try {
             pageNo = Integer.parseInt(pageNoStr);
         } catch (NumberFormatException ignored) {}
 
-        Page<Shop> page = shopService.getPage(pageNo);
+        int type = 0;
+        try {
+            type= Integer.parseInt(typestr);
+        } catch (NumberFormatException ignored) {}
+        Page<Shop> page = shopService.getPage(pageNo,text,type);
+        ArrayList<Type> types = typeDaoIml.getTypes();
         request.setAttribute("shoppage",page);
+        request.setAttribute("text",text);
+        request.setAttribute("types",types);
+        request.setAttribute("type",type);
         request.getRequestDispatcher("/WEB-INF/pages/shops.jsp").forward(request,response);
     }
 

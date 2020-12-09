@@ -6,19 +6,15 @@
         div.top
         {
             height: 50px;
-            /*border: 1px solid red;*/
         }
         div.nav
         {
             height: 20px;
             background: gainsboro;
         }
-        /*div.nav ul li*/
-        /*{*/
-        /*    float: left;*/
-        /*    list-style: none;*/
-        /*}*/
+
         ul.nav_ul{
+            list-style: none;
             display: flex;
             flex-direction: row;
             justify-content: space-around;
@@ -109,7 +105,7 @@
                             <li><a href="#">我的订单</a></li>
                             <li><a href="#">账号余额</a></li>
                             <li><a href="#">我的收藏</a></li>
-                            <li><a href="#">退出</a></li>
+                            <li><a href="userServlet?method=Exit&pageNo=${shoppage.pageNo }">退出</a></li>
                         </ul>
                     </div>
                 </div>
