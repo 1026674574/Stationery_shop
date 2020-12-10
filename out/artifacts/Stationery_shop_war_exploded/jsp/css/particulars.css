@@ -146,17 +146,22 @@ li.price{
 	margin-top: 60px;
 }
 li.collection{
+	position: relative;
+	left: 100px;
+	top: -20px;
+}
+span{
+	color: #761c19;
+}
+li.shoucang{
 	width: 32px;
 	height: 32px;
 	background-image: url(../img/shoucang.png);
-	position: relative;
-	left: 55px;
-	bottom: 30px;
 }
-li.collection:hover{
+li.shoucang:hover{
 	background-image: url(../img/shoucang1.png);
 }
-li.collection:active{
+li.shoucang:active{
 	background-image: url(../img/shoucang2.png);
 }
 li.button button{

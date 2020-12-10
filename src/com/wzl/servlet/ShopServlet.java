@@ -141,6 +141,8 @@ public class ShopServlet extends HttpServlet {
         try {
             id = Integer.parseInt(idStr);
         } catch (NumberFormatException ignored) {}
+
+
         if (id > 0) {
             shop = shopService.getShop(id);
         }

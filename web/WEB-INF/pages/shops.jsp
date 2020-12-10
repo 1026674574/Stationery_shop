@@ -66,7 +66,7 @@
 <div class="above">
     <div class="logo"><img src="${pageContext.request.contextPath}/jsp/img/logo.png" alt="..."></div>
     <div class="search">
-        <select name="type" style="border: black 1px solid">
+        <select name="type" class="select">
     <c:forEach items="${types}" var="types">
         <c:choose>
             <c:when test="${types.ty_id == requestScope.type}">

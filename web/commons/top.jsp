@@ -104,7 +104,7 @@
                         <ul class="simple">
                             <li><a href="#">我的订单</a></li>
                             <li><a href="#">账号余额</a></li>
-                            <li><a href="#">我的收藏</a></li>
+                            <li><a href="userServlet?method=getLike">我的收藏</a></li>
                             <li><a href="userServlet?method=Exit&pageNo=${shoppage.pageNo }">退出</a></li>
                         </ul>
                     </div>

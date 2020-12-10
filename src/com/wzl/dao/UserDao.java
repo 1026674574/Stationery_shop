@@ -2,9 +2,11 @@ package com.wzl.dao;
 
 import com.wzl.dao.impl.UserDaoImpl;
 import com.wzl.db.DBConnection;
+import com.wzl.model.Shop;
 import com.wzl.model.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class UserDao implements UserDaoImpl {
     DBConnection db = new DBConnection();
@@ -55,7 +57,6 @@ public class UserDao implements UserDaoImpl {
             if (resultSet.next()) {
                 User user = new User();
                 user.setUs_id(resultSet.getInt(1));
-
                 user.setUs_password(resultSet.getString("us_phone"));
                 user.setUs_truename(resultSet.getString("us_truename"));
                 user.setUs_address(resultSet.getString("us_address"));
@@ -103,6 +104,50 @@ public class UserDao implements UserDaoImpl {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void Like(int id, int us_id) {
+        Connection connection = db.getConnection();
+        PreparedStatement preparedStatement = null;
+
+        try {
+            preparedStatement = connection.prepareStatement("insert into `文具店`.`like` (sh_id,us_id) values (?, ?)");
+            preparedStatement.setInt(1,id);
+            preparedStatement.setInt(2,us_id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public ArrayList<Shop> getLike(int us_id) {
+        ArrayList<Shop> shops = new ArrayList<>();
+        Connection connection = db.getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement = connection.prepareStatement("select * from `like`,shop WHERE `文具店`.`like`.sh_id = shop.sh_id  AND us_id = ?");
+            preparedStatement.setInt(1,us_id);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next())
+            {
+                Shop shop = new Shop();
+                shop.setSh_name(resultSet.getString("sh_name"));
+                shop.setSh_picpth(resultSet.getString("sh_picpth"));
+                shop.setSh_id(resultSet.getInt("sh_id"));
+                shop.setSh_price(resultSet.getFloat("sh_price"));
+                shop.setSh_text(resultSet.getString("sh_text"));
+                shop.setTy_id(resultSet.getInt("ty_id"));
+                shops.add(shop);
+            }
+            return shops;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return shops;
+
     }
 }
 

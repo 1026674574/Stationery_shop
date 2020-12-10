@@ -1,8 +1,10 @@
 package com.wzl.servlet;
 
+import com.wzl.model.Shop;
 import com.wzl.model.User;
 import com.wzl.service.UserService;
 import com.wzl.web.EStoreWebUtils;
+import com.wzl.web.Page;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 @WebServlet(name = "UserServlet" ,urlPatterns = "/userServlet")
 public class UserServlet extends HttpServlet {
@@ -74,4 +77,31 @@ public class UserServlet extends HttpServlet {
         EStoreWebUtils.Exit(request);
         response.sendRedirect("success.jsp");
     }
+    protected void Like(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        User user = EStoreWebUtils.getUser(request);
+        int id = 0;
+        if (user==null)
+        {
+            request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request,response);
+        }
+        String shopStr = request.getParameter("shop");
+        try {
+            id = Integer.parseInt(shopStr);
+        } catch (NumberFormatException ignored) {}
+        userService.Like(id,user.getUs_id());
+        response.sendRedirect("success.jsp");
+
+
+    }
+    protected void getLike(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        User user = EStoreWebUtils.getUser(request);
+        ArrayList<Shop> like = userService.getLike(user.getUs_id());
+        Page<Shop> page = new Page<>(1);
+        page.setList(like);
+        page.setTotalItemNumber(1);
+        request.setAttribute("shoppage",page);
+        request.getRequestDispatcher("/WEB-INF/pages/shops.jsp").forward(request,response);
+    }
+
+
 }

@@ -66,7 +66,7 @@
 <div class="above">
     <div class="logo"><img src="${pageContext.request.contextPath}/jsp/img/logo.png" alt="..."></div>
     <div class="search">
-        <select name="type" style="border: black 1px solid">
+        <select name="type" class="select">
     <c:forEach items="${types}" var="types">
         <c:choose>
             <c:when test="${types.ty_id == requestScope.type}">
@@ -77,9 +77,9 @@
             </c:when>
         </c:choose>
     </c:forEach>
-            <option value="" selected>所有</option>
+            <option value="0" selected>所有</option>
         </select>
-        <input type="text" class="search1" size="70" name="text" value=笔>
+        <input type="text" class="search1" size="70" name="text" value=${requestScope.text}>
         <input type="submit"  class="submit" value="查询">
     </div>
 </div>

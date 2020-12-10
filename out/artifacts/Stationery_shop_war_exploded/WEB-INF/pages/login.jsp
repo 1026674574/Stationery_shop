@@ -29,7 +29,7 @@
             <li class="forget"><a href="#">忘记密码</a></li>
         </ul>
         <ul>
-            <li><input type="submit" value=登陆></li>
+            <li><input class="submit" type="submit" value=登陆 ></li>
         </ul>
     </div>
 </div>
